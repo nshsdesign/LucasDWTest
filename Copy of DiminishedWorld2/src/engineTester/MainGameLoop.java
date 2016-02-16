@@ -242,6 +242,7 @@ public class MainGameLoop {
 		while (!Display.isCloseRequested()) {
 			if(camera.getType() != Camera.FREE_ROAM)
 			player.move();
+			//tick
 			camera.move();
 			picker.update();
 			//tick();
