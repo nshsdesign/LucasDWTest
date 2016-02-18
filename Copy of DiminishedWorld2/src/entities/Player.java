@@ -122,6 +122,10 @@ public class Player extends Entity {
 	public float getPosZ() {
 		return position.z;
 	}
+	
+	public Vector3f getPosition() {
+		return position;
+	}
 
 
 }

@@ -164,7 +164,7 @@ public class MainGameLoop {
 	  	Camera camera = new Camera(Camera.THIRD_PERSON);
 	  	Player player = new Player(camera, playerTexModel, new Vector3f(75, 0, 0), 0, 0, 0, 1);
 	  	
-	  	//Basic PlayerBox = new Basic(new Vector3f(75, 0, 0), new Vector3f(5, 10, 5));
+	  	Basic PlayerBox = new Basic(new Vector3f(75, 0, 0), new Vector3f(5, 10, 5));
 		
 		//initializing stuff
 	  	
@@ -238,11 +238,12 @@ public class MainGameLoop {
 		
 		while (!Display.isCloseRequested()) {
 			if(camera.getType() != Camera.FREE_ROAM)
-				//if(PlayerBox.checkCollisions(BoulderBox)) {
-				//	System.out.println("true");
-				//}
 				player.move();
 				camera.move();
+				PlayerBox.setBoxPos(player.getPosition());
+				if(PlayerBox.checkCollisions(BoulderBox)) {
+					System.out.println("true");
+				}
 				picker.update();
 //				for (Entity e : entities) {
 //					e.update();

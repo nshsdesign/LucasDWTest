@@ -1,6 +1,6 @@
 package Collisions;
 
-import javax.vecmath.Vector3f;
+import org.lwjgl.util.vector.Vector3f;
 
 //import org.lwjgl.util.Rectangle;
 
@@ -10,14 +10,14 @@ public class Basic {
 		
 	private Vector3f position, size;
 	
-	public Basic(org.lwjgl.util.vector.Vector3f vector3f, org.lwjgl.util.vector.Vector3f vector3f2) {
-		this.position.x = vector3f.x;
-		this.position.y = vector3f.y; // set positions
-		this.position.z = vector3f.z;
+	public Basic(Vector3f Npositions, Vector3f Nsize) {
+		this.position.x = Npositions.x;
+		this.position.y = Npositions.y; // set positions
+		this.position.z = Npositions.z;
 		
-		this.size.x = vector3f2.z;
-		this.size.y = vector3f2.y; //set size
-		this.size.z = vector3f2.z;
+		this.size.x = Nsize.z;
+		this.size.y = Nsize.y; //set size
+		this.size.z = Nsize.z;
 	}
 	
 	/*public void makeBoxGeometry() {
