@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
 
+import Collisions.Basic;
 import entities.Camera;
 import entities.Entity;
 import entities.Light;
@@ -43,14 +44,6 @@ import javax.swing.JButton;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 
-import jinngine.collision.SAP2;
-import jinngine.geometry.Box;
-import jinngine.math.Vector3;
-import jinngine.physics.*;
-import jinngine.physics.ContactTrigger.Callback;
-import jinngine.physics.constraint.contact.ContactConstraint;
-import jinngine.physics.force.GravityForce;
-import jinngine.physics.solver.NonsmoothNonlinearConjugateGradient;
 
 import menu.*;
 
@@ -170,6 +163,8 @@ public class MainGameLoop {
 	  //**********Camera and Player Setup************************
 	  	Camera camera = new Camera(Camera.THIRD_PERSON);
 	  	Player player = new Player(camera, playerTexModel, new Vector3f(75, 0, 0), 0, 0, 0, 1);
+	  	
+	  	//Basic PlayerBox = new Basic(new Vector3f(75, 0, 0), new Vector3f(5, 10, 5));
 		
 		//initializing stuff
 	  	
@@ -188,6 +183,8 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setNormalMap(loader.loadTexture("boulderNormal"));
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
+	  	
+	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(20, 20, 20));
 	  	
 	  	/*TexturedModel crateModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("box", loader),
 	  			new ModelTexture(loader.loadTexture("box")));
@@ -241,41 +238,42 @@ public class MainGameLoop {
 		
 		while (!Display.isCloseRequested()) {
 			if(camera.getType() != Camera.FREE_ROAM)
-			player.move();
-			//tick
-			camera.move();
-			picker.update();
-			//tick();
-//			for (Entity e : entities) {
-//				e.update();
-//			}
-//			for (Entity e : normalMapEntities) {
-//				e.update();
-//			}
-			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);
+				//if(PlayerBox.checkCollisions(BoulderBox)) {
+				//	System.out.println("true");
+				//}
+				player.move();
+				camera.move();
+				picker.update();
+//				for (Entity e : entities) {
+//					e.update();
+//				}
+//				for (Entity e : normalMapEntities) {
+//					e.update();
+//				}
+				GL11.glEnable(GL30.GL_CLIP_DISTANCE0);
 			
-			//render reflection teture
-			buffers.bindReflectionFrameBuffer();
-			float distance = 2 * (camera.getPosition().y - water.getHeight());
-			camera.getPosition().y -= distance;
-			camera.invertPitch();
-			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, 1, 0, -water.getHeight()+1));
-			camera.getPosition().y += distance;
-			camera.invertPitch();
+				//render reflection teture
+				buffers.bindReflectionFrameBuffer();
+				float distance = 2 * (camera.getPosition().y - water.getHeight());
+				camera.getPosition().y -= distance;
+				camera.invertPitch();
+				renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, 1, 0, -water.getHeight()+1));
+				camera.getPosition().y += distance;
+				camera.invertPitch();
 			
-			//render refraction texture
-			buffers.bindRefractionFrameBuffer();
-			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
+				//render refraction texture
+				buffers.bindRefractionFrameBuffer();
+				renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
 			
-			//render to screen
-			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);
-			buffers.unbindCurrentFrameBuffer();	
-			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));	
-			waterRenderer.render(waters, camera, sun);
-			guiRenderer.render(guiTextures);
-			TextMaster.render();
+				//render to screen
+				GL11.glDisable(GL30.GL_CLIP_DISTANCE0);
+				buffers.unbindCurrentFrameBuffer();	
+				renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));	
+				waterRenderer.render(waters, camera, sun);
+				guiRenderer.render(guiTextures);
+				TextMaster.render();
 			
-			DisplayManager.updateDisplay();
+				DisplayManager.updateDisplay();
 
 		}
 		
