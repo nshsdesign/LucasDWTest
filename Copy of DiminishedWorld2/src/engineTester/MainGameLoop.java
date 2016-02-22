@@ -162,9 +162,9 @@ public class MainGameLoop {
 	  		
 	  //**********Camera and Player Setup************************
 	  	Camera camera = new Camera(Camera.THIRD_PERSON);
-	  	Player player = new Player(camera, playerTexModel, new Vector3f(75, 0, 0), 0, 0, 0, 1);
+	  	Player player = new Player(camera, playerTexModel, new Vector3f(75, 10, 0), 0, 0, 0, 1);
 	  	
-	  	Basic PlayerBox = new Basic(new Vector3f(75, 0, 0), new Vector3f(5, 10, 5));
+	  	Basic PlayerBox = new Basic(new Vector3f(75, 10, 0), new Vector3f(5, 10, 5));
 		
 		//initializing stuff
 	  	
@@ -184,7 +184,8 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
 	  	
-	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(20, 20, 20));
+	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(10, 20, 10));
+	  	
 	  	
 	  	/*TexturedModel crateModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("box", loader),
 	  			new ModelTexture(loader.loadTexture("box")));
@@ -201,6 +202,8 @@ public class MainGameLoop {
 	  	TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture,
 	  			gTexture, bTexture);
 	  	TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
+	  	
+	  	Basic FloorBox = new Basic(new Vector3f(0, 0, 0), new Vector3f(100, 0, 100));
 	  	//**********Text Setup************************
 	  	//					 (String text, float fontSize, FontType font, vec2D(posX, posY), maxLineLength, boolean centered);
 	  	GUIText text = new GUIText("", 2, font, new Vector2f(0.5f,0.5f), 0.5f, true);
@@ -242,8 +245,8 @@ public class MainGameLoop {
 				PlayerBox.setBoxPos(player.getPosition());
 				if(!PlayerBox.checkCollisions(BoulderBox)) {
 					player.move();
+					PlayerBox.setBoxPos(player.getPosition());
 				}
-				PlayerBox.setBoxPos(player.getPosition());
 				picker.update();
 //				for (Entity e : entities) {
 //					e.update();
