@@ -10,14 +10,19 @@ public class Basic {
 		
 	private Vector3f position, size;
 	
-	public Basic(Vector3f Npositions, Vector3f Nsize) {
-		this.position.x = Npositions.x;
-		this.position.y = Npositions.y; // set positions
-		this.position.z = Npositions.z;
+	public Basic() {
+		this.position.x = 0;
+		this.position.y = 0;
+		this.position.z = 0;
 		
-		this.size.x = Nsize.z;
-		this.size.y = Nsize.y; //set size
-		this.size.z = Nsize.z;
+		this.size.x = 0;
+		this.size.y = 0;
+		this.size.z = 0;
+	}
+	public Basic(Vector3f Npositions, Vector3f Nsize) {
+		this.position = Npositions;
+		
+		this.size = Nsize;
 	}
 	
 	/*public void makeBoxGeometry() {
@@ -29,15 +34,11 @@ public class Basic {
 	}*/
 	
 	public void setBoxPos(Vector3f updatePos) {
-		this.position.x = updatePos.x;
-		this.position.y = updatePos.y; 
-		this.position.z = updatePos.z;
+		this.position = updatePos;
 	}
 	
 	public void setPlanePos(Vector3f updatePos) {
-		this.position.x = updatePos.x;
-		this.position.y = updatePos.y;
-		this.position.z = updatePos.z;
+		this.position = updatePos;
 	}
 	
 	public boolean checkCollisions(Basic body) {

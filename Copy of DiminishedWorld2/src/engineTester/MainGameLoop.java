@@ -238,12 +238,12 @@ public class MainGameLoop {
 		
 		while (!Display.isCloseRequested()) {
 			if(camera.getType() != Camera.FREE_ROAM)
-				player.move();
 				camera.move();
 				PlayerBox.setBoxPos(player.getPosition());
-				if(PlayerBox.checkCollisions(BoulderBox)) {
-					System.out.println("true");
+				if(!PlayerBox.checkCollisions(BoulderBox)) {
+					player.move();
 				}
+				PlayerBox.setBoxPos(player.getPosition());
 				picker.update();
 //				for (Entity e : entities) {
 //					e.update();
