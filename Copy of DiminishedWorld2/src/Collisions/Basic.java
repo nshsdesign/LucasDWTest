@@ -42,11 +42,12 @@ public class Basic {
 	}
 	
 	public boolean checkCollisions(Basic body) {
-		return((this.position.x + this.size.x) > (body.position.x) && 
-			   (this.position.x) < (body.position.x + body.size.x) &&
-			   (this.position.y + this.size.y) > (body.position.y) &&
-			   (this.position.y) < (body.position.y + body.size.y) &&
-			   (this.position.z + this.size.z) > (body.position.z) &&
-			   (this.position.z) < (body.position.z + body.size.z));
+		return((this.position.x + this.size.x) >= (body.position.x) && 
+			   (this.position.x) <= (body.position.x + body.size.x) &&
+			   (this.position.y + this.size.y) >= (body.position.y) &&
+			   (this.position.y) <= (body.position.y + body.size.y) &&
+			   (this.position.z + this.size.z) >= (body.position.z) &&
+			   (this.position.z) <= (body.position.z + body.size.z));
 	}
+	
 }
