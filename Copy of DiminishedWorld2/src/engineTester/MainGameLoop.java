@@ -184,7 +184,7 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
 	  	
-	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(8, 13, 8));
+	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(10, 13, 10));
 	  	
 	  	
 	  	/*TexturedModel crateModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("box", loader),
@@ -245,6 +245,14 @@ public class MainGameLoop {
 				PlayerBox.setBoxPos(player.getPosition());
 				if((!PlayerBox.checkCollisions(BoulderBox)) && (!PlayerBox.checkCollisions(FloorBox))) {
 					player.move();
+					PlayerBox.setBoxPos(player.getPosition());
+				}
+				if((PlayerBox.checkCollisions(BoulderBox))) {
+					player.move(PlayerBox.checkFaceCollisions(BoulderBox));
+					PlayerBox.setBoxPos(player.getPosition());
+				}
+				else if ((PlayerBox.checkCollisions(FloorBox))) {
+					player.move(PlayerBox.checkFaceCollisions(FloorBox));
 					PlayerBox.setBoxPos(player.getPosition());
 				}
 				picker.update();

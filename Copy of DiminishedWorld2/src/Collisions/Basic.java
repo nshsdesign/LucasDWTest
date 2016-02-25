@@ -42,38 +42,35 @@ public class Basic {
 	}
 	
 	public boolean checkCollisions(Basic body) {
-		if((this.position.x + this.size.x) >= (body.position.x) && 
+		return((this.position.x + this.size.x) >= (body.position.x) && 
 		   (this.position.x) <= (body.position.x + body.size.x) &&
 		   (this.position.y + this.size.y) >= (body.position.y) &&
 		   (this.position.y) <= (body.position.y + body.size.y) &&
 		   (this.position.z + this.size.z) >= (body.position.z) &&
-		   (this.position.z) <= (body.position.z + body.size.z)) {
-			
-			this.checkFaceCollisions(body);
-			return true;
-		}
-		return false;
+		   (this.position.z) <= (body.position.z + body.size.z));
+
 	}
 	
-	public void checkFaceCollisions(Basic body) {
+	public String checkFaceCollisions(Basic body) {
 		if((this.position.x < body.position.x) && ((this.position.x + this.size.x) < (body.position.x + body.size.x))) {
-			System.out.println("right");
+			return("right");
 		}
 		if((this.position.x > body.position.x) && ((this.position.x + this.size.x) > (body.position.x + body.size.x))) {
-			System.out.println("left");
+			return("left");
 		}
 		if((this.position.y < body.position.y) && ((this.position.y + this.size.y) < (body.position.y + body.size.y))) {
-			System.out.println("up");
+			return("up");
 		}
 		if((this.position.y > body.position.y) && ((this.position.y + this.size.y) > (body.position.y + body.size.y))) {
-			System.out.println("down");
+			return("down");
 		}
 		if((this.position.z > body.position.z) && ((this.position.z + this.size.z) > (body.position.z + body.size.z))) {
-			System.out.println("forward");
+			return("forward");
 		}
 		if((this.position.z > body.position.z) && ((this.position.z + this.size.z) > (body.position.z + body.size.z))) {
-			System.out.println("back");
-		}	
+			return("back");
+		}
+		return "";
 	}
 	
 }
