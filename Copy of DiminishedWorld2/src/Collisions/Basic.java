@@ -2,10 +2,6 @@ package Collisions;
 
 import org.lwjgl.util.vector.Vector3f;
 
-//import org.lwjgl.util.Rectangle;
-
-//import com.sun.j3d.utils.geometry.Box;
-
 public class Basic {
 		
 	private Vector3f position, size;
@@ -24,14 +20,6 @@ public class Basic {
 		
 		this.size = Nsize;
 	}
-	
-	/*public void makeBoxGeometry() {
-		Box mainBox = new Box(this.size.x, this.size.y, this.size.z, null); //3d box
-	}
-	
-	public void makePlaneGeometry() {
-		Rectangle mainPlane = new Rectangle((int)this.position.x, (int)this.position.y, (int)this.size.x, (int)this.size.y); //2d plane
-	}*/
 	
 	public void setBoxPos(Vector3f updatePos) {
 		this.position = updatePos;
