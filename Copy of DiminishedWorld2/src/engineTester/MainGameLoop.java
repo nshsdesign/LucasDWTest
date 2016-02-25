@@ -184,7 +184,7 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
 	  	
-	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(10, 20, 10));
+	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(8, 13, 8));
 	  	
 	  	
 	  	/*TexturedModel crateModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("box", loader),
@@ -203,7 +203,7 @@ public class MainGameLoop {
 	  			gTexture, bTexture);
 	  	TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 	  	
-	  	Basic FloorBox = new Basic(new Vector3f(0, 0, 0), new Vector3f(100, 0, 100));
+	  	Basic FloorBox = new Basic(new Vector3f(70, 0, -50), new Vector3f(1000, 0, 1000));
 	  	//**********Text Setup************************
 	  	//					 (String text, float fontSize, FontType font, vec2D(posX, posY), maxLineLength, boolean centered);
 	  	GUIText text = new GUIText("", 2, font, new Vector2f(0.5f,0.5f), 0.5f, true);
@@ -243,7 +243,7 @@ public class MainGameLoop {
 			if(camera.getType() != Camera.FREE_ROAM)
 				camera.move();
 				PlayerBox.setBoxPos(player.getPosition());
-				if(!PlayerBox.checkCollisions(BoulderBox)) {
+				if((!PlayerBox.checkCollisions(BoulderBox)) && (!PlayerBox.checkCollisions(FloorBox))) {
 					player.move();
 					PlayerBox.setBoxPos(player.getPosition());
 				}
