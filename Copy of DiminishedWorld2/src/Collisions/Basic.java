@@ -36,7 +36,6 @@ public class Basic {
 		   (this.position.y) <= (body.position.y + body.size.y) &&
 		   (this.position.z + this.size.z) >= (body.position.z) &&
 		   (this.position.z) <= (body.position.z + body.size.z));
-
 	}
 	
 	public String checkFaceCollisions(Basic body) {

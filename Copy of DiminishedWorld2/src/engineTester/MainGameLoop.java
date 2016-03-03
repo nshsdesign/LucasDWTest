@@ -184,7 +184,13 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
 	  	
+	  	TexturedModel roomModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("1", loader),
+	  			new ModelTexture(loader.loadTexture("1")));
+	  	roomModel.getTexture().setShineDamper(10);
+	  	roomModel.getTexture().setReflectivity(0.5f);
+	  	
 	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(10, 13, 10));
+	  	
 	  	
 	  	
 	  	/*TexturedModel crateModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("box", loader),
@@ -203,11 +209,12 @@ public class MainGameLoop {
 	  			gTexture, bTexture);
 	  	TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 	  	
-	  	Basic FloorBox = new Basic(new Vector3f(70, 0, -50), new Vector3f(1000, 0, 1000));
+	  	Basic FloorBox = new Basic(new Vector3f(75, 0, 0), new Vector3f(1000, 1000, 1000));
+	  	
 	  	//**********Text Setup************************
 	  	//					 (String text, float fontSize, FontType font, vec2D(posX, posY), maxLineLength, boolean centered);
-	  	GUIText text = new GUIText("", 2, font, new Vector2f(0.5f,0.5f), 0.5f, true);
-	  	text.setColour(1, 1, 1);
+	  	/*GUIText text = new GUIText("", 2, font, new Vector2f(0.5f,0.5f), 0.5f, true);
+	  	text.setColour(1, 1, 1);*/
 
 	  	//**********Light Setup************************
 	  	Light sun = new Light(new Vector3f(10000, 10000, -10000), new Vector3f(1.3f, 1.3f, 1.3f));
@@ -237,6 +244,7 @@ public class MainGameLoop {
 	  	lights.add(l);
 	  	normalMapEntities.add(new Entity(barrelModel, new Vector3f(75, 10, -75), 0, 0, 0, 1f));
 	  	normalMapEntities.add(new Entity(boulderModel, new Vector3f(75, 10, -50), 0, 0, 0, 1f));
+	  	normalMapEntities.add(new Entity(roomModel, new Vector3f(100, 50, -50), 0, 0, 0, 1f));
 	  	//normalMapEntities.add(new Entity(crateModel, new Vector3f(50, 10, 60), 0, 0, 0, 1f))
 		
 		while (!Display.isCloseRequested()) {
@@ -245,15 +253,12 @@ public class MainGameLoop {
 				PlayerBox.setBoxPos(player.getPosition());
 				if((!PlayerBox.checkCollisions(BoulderBox)) && (!PlayerBox.checkCollisions(FloorBox))) {
 					player.move();
-					PlayerBox.setBoxPos(player.getPosition());
 				}
 				if((PlayerBox.checkCollisions(BoulderBox))) {
 					player.move(PlayerBox.checkFaceCollisions(BoulderBox));
-					PlayerBox.setBoxPos(player.getPosition());
 				}
-				else if ((PlayerBox.checkCollisions(FloorBox))) {
-					player.move(PlayerBox.checkFaceCollisions(FloorBox));
-					PlayerBox.setBoxPos(player.getPosition());
+				if((PlayerBox.checkCollisions(FloorBox))) {
+					//player.move(PlayerBox.checkFaceCollisions(FloorBox));
 				}
 				picker.update();
 //				for (Entity e : entities) {
