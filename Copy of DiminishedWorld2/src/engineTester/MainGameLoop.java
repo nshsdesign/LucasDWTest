@@ -184,11 +184,6 @@ public class MainGameLoop {
 	  	boulderModel.getTexture().setShineDamper(10);
 	  	boulderModel.getTexture().setReflectivity(0.5f);
 	  	
-	  	TexturedModel roomModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("1", loader),
-	  			new ModelTexture(loader.loadTexture("1")));
-	  	roomModel.getTexture().setShineDamper(10);
-	  	roomModel.getTexture().setReflectivity(0.5f);
-	  	
 	  	Basic BoulderBox = new Basic(new Vector3f(75, 10, -50), new Vector3f(10, 13, 10));
 	  	
 	  	
@@ -221,7 +216,7 @@ public class MainGameLoop {
 	  	lights.add(sun);
 	  		
 	  	//**********Terrain Setup************************
-	  	Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightmap");
+	  	Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "earthlikePlanet");
 	  	terrains.add(terrain);
 
 	  	entities.add(player);
@@ -244,7 +239,6 @@ public class MainGameLoop {
 	  	lights.add(l);
 	  	normalMapEntities.add(new Entity(barrelModel, new Vector3f(75, 10, -75), 0, 0, 0, 1f));
 	  	normalMapEntities.add(new Entity(boulderModel, new Vector3f(75, 10, -50), 0, 0, 0, 1f));
-	  	normalMapEntities.add(new Entity(roomModel, new Vector3f(100, 50, -50), 0, 0, 0, 1f));
 	  	//normalMapEntities.add(new Entity(crateModel, new Vector3f(50, 10, 60), 0, 0, 0, 1f))
 		
 		while (!Display.isCloseRequested()) {
