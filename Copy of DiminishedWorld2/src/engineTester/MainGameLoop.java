@@ -195,10 +195,15 @@ public class MainGameLoop {
 	  	crateModel.getTexture().setReflectivity(0.5f);*/
 
 	  	//**********Terrain Setup************************
-	  	TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy2"));
+	  	/*TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy2"));
 	  	TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("mud"));
 	  	TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("grassFlowers"));
-	  	TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
+	  	TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));*/
+	  	
+	  	TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("space"));
+	  	TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("space"));
+	  	TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("space"));
+	  	TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("space"));
 
 	  	TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture,
 	  			gTexture, bTexture);
@@ -216,8 +221,10 @@ public class MainGameLoop {
 	  	lights.add(sun);
 	  		
 	  	//**********Terrain Setup************************
-	  	Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "earthlikePlanet");
-	  	terrains.add(terrain);
+	  	Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "salem.Height.Map.Merged");
+	  	
+	  	
+	  	//terrains.add(terrain);
 
 	  	entities.add(player);
 	  		
@@ -252,7 +259,7 @@ public class MainGameLoop {
 					player.move(PlayerBox.checkFaceCollisions(BoulderBox));
 				}
 				if((PlayerBox.checkCollisions(FloorBox))) {
-					//player.move(PlayerBox.checkFaceCollisions(FloorBox));
+					player.move(PlayerBox.checkFaceCollisions(FloorBox));
 				}
 				picker.update();
 //				for (Entity e : entities) {
